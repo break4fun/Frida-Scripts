@@ -133,17 +133,6 @@ Java.perform(function () {
         console.log("[-] ConnectivityMonitorPlugin hook failed: " + e);
     }
 
-    try {
-        var DeviceIntegrity = Java.use("com.rayole.offerpro.sdk.DeviceIntegrity");
-        DeviceIntegrity.isVpnActive.overload('android.content.Context').implementation = function (ctx) {
-            console.log("[*] DeviceIntegrity.isVpnActive() -> false");
-            return false;
-        };
-        console.log("[+] DeviceIntegrity hooked");
-    } catch (e) {
-        console.log("[-] DeviceIntegrity hook failed: " + e);
-    }
-
     // If the native library is present, force the JNI anti-tamper exports to 0.
     try {
         var module = Process.findModuleByName("libapp_fortress_native.so");
